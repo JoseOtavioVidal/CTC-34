@@ -1,5 +1,5 @@
-import q1
-import q2
+from Lab1.Q3.Auxiliar_q1 import q1
+from Lab1.Q3.Auxiliar_q2 import q2
 
 def transition(states, symbol, graph):
     deathState = 10
@@ -57,14 +57,14 @@ if __name__ == "__main__":
                 states.append(element[0])
             if element[2] not in states:
                 states.append(element[2])
-        q2.grafo_q2(graph, states, finalStages)
+        graph = q2.grafo_q2(graph, states, finalStages)
     elif entrada == 1:  # A entrada é um caso for um AFN com e-transições, utilização de q2.py
         initialStage = [0]
         finalStages = [1]
-        states = [0, 1, 2, 3]
+        states = ['0', '1', '2', '3', '4', '5']
         graph = [('0','&','4'), ('4','&','2'), ('2','&','5'), ('5','&','3'), ('3','&','6'), ('6','&','1'), ('4','a','4'),
             ('5', 'b', '5')]
-        q2.grafo_q2(graph, states, finalStages)
+        graph = q2.grafo_q2(graph, states, finalStages)
     else:  # A entrada é diferente de zero e um caso já for um AFN sem e-transições
         finalStages = [0, 1, 2]
         initialStage = 0

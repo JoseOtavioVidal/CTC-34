@@ -3,11 +3,11 @@ import os
 os.environ["PATH"] += os.pathsep + r'C:/Program Files (x86)/release/bin'
 
 # Método recursivo utilizado para definição de e-CLOSURE de cada estado
-def recursao_CLOSURE(state, list_aux):
+def recursao_CLOSURE(grafo, state, list_aux):
     list_aux.append(state)
     for i in range(len(grafo)):
         if grafo[i][0] == state and grafo[i][1] == '&' and (not grafo[i][2] in list_aux):
-            recursao_CLOSURE(grafo[i][2], list_aux)
+            recursao_CLOSURE(grafo, grafo[i][2], list_aux)
 
 # Método principal para eliminação de todas as e-transições em um grafo
 def grafo_q2(grafo, states, final_states):
@@ -16,7 +16,7 @@ def grafo_q2(grafo, states, final_states):
     list_CLOSUREs = []
     for state in states:  # Para cada um dos estados
         list_aux = []
-        recursao_CLOSURE(state, list_aux)  # Incluir o estado em seu próprio e-CLOSURE
+        recursao_CLOSURE(grafo, state, list_aux)  # Incluir o estado em seu próprio e-CLOSURE
         list_CLOSUREs.append(list_aux)  # Acrescentar o e-CLOSURE do estado à lista dos e-CLOSUREs
 
     # II – cada arco de A em X gera um arco de A em Y para cada Y no -fecho(X)
@@ -45,6 +45,8 @@ def grafo_q2(grafo, states, final_states):
             n = n-1
         else:
             k = k+1
+
+    return grafo
 
 if __name__ == "__main__":
 
