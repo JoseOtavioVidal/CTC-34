@@ -20,8 +20,6 @@ def transition(states, symbol, graph):
     #print(states)
 
 
-
-
 def AFN(graph, initialStage, finalStages, word):
     possibleStates = []
     possibleStates.append(initialStage)
@@ -41,10 +39,10 @@ def AFN(graph, initialStage, finalStages, word):
 if __name__ == "__main__":
     a = 'a'
     b = 'b'
-    c= 'c'
+    c = 'c'
     word1 = [b, a, a, b, b, a]
     word2 = [a, b, a, c, a, b, c]
-    entrada = 0
+    entrada = 2
     if entrada == 0:  # A entrada é zero caso for uma expressão regular, utilização de q1.py e q2.py
         word = "a*b*c*"
         regularExpression = []
@@ -67,7 +65,7 @@ if __name__ == "__main__":
         graph = [('0','&','4'), ('4','&','2'), ('2','&','5'), ('5','&','3'), ('3','&','6'), ('6','&','1'), ('4','a','4'),
             ('5', 'b', '5')]
         q2.grafo_q2(graph, states, finalStages)
-    else: # A entrada é diferente de zero e um caso já for um AFN sem e-transições
+    else:  # A entrada é diferente de zero e um caso já for um AFN sem e-transições
         finalStages = [0, 1, 2]
         initialStage = 0
         graph = [(0, ['a'], 3), (3, ['b'], 2), (3, ['c'], 2), (2, ['a'], 3), (3, ['b'], 1), (3, ['c'], 1)]
