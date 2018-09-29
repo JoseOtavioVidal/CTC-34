@@ -1,3 +1,7 @@
+from graphviz import Digraph
+import os
+os.environ["PATH"] += os.pathsep + r'C:\Program Files\graphviz-2.38\release\bin'
+
 
 def DFAg(NFAgraph, NFAinitialStages, alphabet):
     DFAgraph = []
@@ -71,14 +75,29 @@ def DFAf(DFAgraph, NFAfinalStages):
 
 if __name__ == "__main__":
     NFAinitialStages = ['q0']
-    NFAfinalStages = ['q2']
-    NFAgraph = [('q0', 'a','q0'),('q0', 'b','q0'), ('q0', 'b','q1'), ('q1', 'b','q2')]
+    NFAfinalStages = ['q2', 'q4']
+    NFAgraph = [('q0', '0','q0'),('q0', '1','q0'), ('q0', '0','q1'), ('q1', '0','q2'), ('q0', '1','q3'), ('q3', '1','q4')]
     DFAinitialStages = []
     DFAfinalStages = []
     DFAgraph = []
-    alphabet = ['a', 'b']
+    alphabet = ['1', '0']
     DFAgraph = DFAg(NFAgraph, NFAinitialStages, alphabet)
     print(DFAgraph)
     DFAinitialStages = NFAinitialStages
     DFAfinalStages = DFAf(DFAgraph, NFAfinalStages)
     print(DFAfinalStages)
+
+    drawGraph = Digraph('Automatum', filename='automata', format='pdf')
+    drawGraph.attr(rankdir='LR', size='8,5')
+    drawGraph.attr('node', shape='doublecircle')
+    for stage in DFAfinalStages:
+        drawGraph.node(stage)
+    drawGraph.attr('node', shape='circle')
+    for element in DFAgraph:
+        init = str(element[0])
+        final = str(element[2])
+        label = ""
+        for symbol in element[1]:
+            label += (symbol)
+        drawGraph.edge(init, final, label=label)
+    drawGraph.view()
