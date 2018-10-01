@@ -70,24 +70,46 @@ def DFAf(DFAgraph, NFAfinalStages):
         for stage in NFAfinalStages:
             if stage in primaryFinalStages and DFAfinalStages.count(element[2]) == 0:
                 DFAfinalStages.append(element[2])
+        primaryInitialStages = element[0].split(',')
+        for stage in NFAfinalStages:
+            if stage in primaryInitialStages and DFAfinalStages.count(element[0]) == 0:
+                DFAfinalStages.append(element[0])
     return DFAfinalStages
 
 
 if __name__ == "__main__":
     NFAinitialStages = ['q0']
-    NFAfinalStages = ['q2', 'q4']
-    NFAgraph = [('q0', '0','q0'),('q0', '1','q0'), ('q0', '0','q1'), ('q1', '0','q2'), ('q0', '1','q3'), ('q3', '1','q4')]
+    NFAfinalStages = ['q1', 'q2', 'q0']#, 'q2', 'q3', 'q5']
+
+    NFAgraph = [('q0', 'a', 'q3'), ('q3', 'b', 'q1'), ('q3', 'c', 'q1'), ('q3', 'b', 'q2'), ('q3', 'c', 'q2'), ('q2', 'a', 'q3')]
+
+        #         Automato 4
+        #        [('q3', 'a', 'q3'), ('q5', 'b', 'q5'), ('q6', 'c', 'q6'), ('q0', 'a', 'q3'), ('q0', 'b', 'q5'),
+        #        ('q0', 'c', 'q6'), ('q2', 'b', 'q5'), ('q2', 'c', 'q6'), ('q3', 'a', 'q2'), ('q3', 'a', 'q5'),
+        #        ('q3', 'a', 'q4'), ('q3', 'a', 'q6'), ('q3', 'a', 'q1'), ('q3', 'b', 'q5'), ('q3', 'c', 'q6'), ('q4', 'c', 'q6'), ('q5', 'b', 'q4'), ('q5', 'b', 'q6'), ('q5', 'b', 'q1'), ('q5', 'c', 'q6'), ('q6', 'c', 'q1')]
+
+        #        Automato 1
+        #        [('q2', 'b', 'q3'), ('q3', 'b', 'q4'), ('q5', 'a', 'q5'), ('q6', 'a', 'q6'), ('q5', 'b', 'q5'), ('q6', 'b', 'q6'),
+        #        ('q0', 'b', 'q3'), ('q0', 'a', 'q5'), ('q0', 'b', 'q5'), ('q3', 'b', 'q6'), ('q3', 'b', 'q1'), ('q4', 'a', 'q6'),
+        #        ('q4', 'b', 'q6'), ('q5', 'b', 'q3'), ('q5', 'a', 'q2'), ('q5', 'b', 'q2'), ('q6', 'a', 'q1'), ('q6', 'b', 'q1')]
+
+        #           Automato 2
+         #          [('q0', 'a', 'q3'), ('q3', 'b', 'q1'), ('q3', 'c', 'q1'), ('q3', 'b', 'q2'), ('q3', 'c', 'q2'), ('q2', 'a', 'q3')]
+
+        #           Automato 3
+        #           [('q0', 'a','q4'),('q4', 'a','q4'), ('q4', 'a','q2'), ('q2', 'b','q1'), ('q4', 'b','q1'), ('q0', 'a','q1')
+        #           ,('q0', 'b','q1'),('q0', 'b','q5'),('q5', 'b','q5'),('q5', 'b','q3'),('q3', 'a','q1'),('q5', 'q','q1')]
     DFAinitialStages = []
     DFAfinalStages = []
     DFAgraph = []
-    alphabet = ['1', '0']
+    alphabet = ['a', 'b', 'c']
     DFAgraph = DFAg(NFAgraph, NFAinitialStages, alphabet)
     print(DFAgraph)
     DFAinitialStages = NFAinitialStages
     DFAfinalStages = DFAf(DFAgraph, NFAfinalStages)
     print(DFAfinalStages)
 
-    drawGraph = Digraph('Automatum', filename='automata', format='pdf')
+    drawGraph = Digraph('Automatum', filename='automata2', format='pdf')
     drawGraph.attr(rankdir='LR', size='8,5')
     drawGraph.attr('node', shape='doublecircle')
     for stage in DFAfinalStages:

@@ -1,0 +1,19 @@
+digraph Automatum {
+	rankdir=LR size="8,5"
+	node [shape=doublecircle]
+	q0
+	"q1,q2"
+	node [shape=circle]
+	q0 -> q3 [label=a]
+	q0 -> q [label=b]
+	q0 -> q [label=c]
+	q3 -> q [label=a]
+	q3 -> "q1,q2" [label=b]
+	q3 -> "q1,q2" [label=c]
+	q -> q [label=a]
+	q -> q [label=b]
+	q -> q [label=c]
+	"q1,q2" -> q3 [label=a]
+	"q1,q2" -> q [label=b]
+	"q1,q2" -> q [label=c]
+}
