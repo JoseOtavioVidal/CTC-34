@@ -1,0 +1,18 @@
+digraph Automatum {
+	rankdir=LR size="8,5"
+	node [shape=doublecircle]
+	q2p3
+	node [shape=circle]
+	q0p0 -> q1p1 [label=a]
+	q0p1 -> q1p2 [label=a]
+	q0p2 -> q1p3 [label=a]
+	q0p3 -> q1p1 [label=a]
+	q1p0 -> q2p1 [label=a]
+	q1p1 -> q2p2 [label=a]
+	q1p2 -> q2p3 [label=a]
+	q1p3 -> q2p1 [label=a]
+	q2p0 -> q3p1 [label=a]
+	q2p1 -> q3p2 [label=a]
+	q2p2 -> q3p3 [label=a]
+	q2p3 -> q3p1 [label=a]
+}

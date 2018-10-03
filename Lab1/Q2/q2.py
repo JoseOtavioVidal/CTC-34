@@ -48,20 +48,19 @@ def grafo_q2(grafo, states, final_states):
 
 if __name__ == "__main__":
 
-    alfabeto = ['a', 'b', 'c']
-    states = ['0', '1', '2', '3', '4', '5']#, '6']
+    alfabeto = ['a']
+    states = ['0', '1', '2', '3', '4']#, '6']
     #grafo = [('0', '&', '5'), ('5', '&', '2'), ('2', 'b', '3'), ('3', 'b', '4'), ('4', '&', '6'), ('6', '&', '1'),
      #       ('5', 'a', '5'), ('6', 'a', '6'), ('5', 'b', '5'), ('6', 'b', '6')]
     #grafo = [('0', '&', '2'), ('2', '&', '1'), ('2', 'a', '3'), ('3', 'b', '2'), ('3', 'c', '2')]
     #grafo = [('0','&','4'), ('0','&','5'), ('4','&','2'), ('5','&','3'), ('2','b','1'), ('3','a','1'), ('4','a','4'),
      #       ('5', 'b', '5')]
-    grafo = [('0','&','4'), ('4','&','2'), ('2','&','5'), ('5','&','3'), ('3','&','6'), ('6','&','1'), ('4','a','4'),
-            ('5', 'b', '5')]
+    grafo = [('0','&','2'), ('2','&','1'), ('2','a','4'), ('4','a','3'), ('3', 'a', '2')]
     final_states = ['1']
 
     grafo_q2(grafo, states, final_states)
 
-    drawGraph = Digraph('Automatum', filename='automataq02d', format='jpg')
+    drawGraph = Digraph('Automatum', filename='automataq02ex', format='jpg')
     drawGraph.attr(rankdir='LR', size='8,5')
     drawGraph.attr('node', shape='doublecircle')
     for x in final_states:
